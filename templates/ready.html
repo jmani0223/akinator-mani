@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>당신의 짝꿍이 궁금하십니까?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        $(function() {
+            var total_answer = decodeURI(location.search.split('=')[1]);
+            $('#start').click(function() {
+                location.href='/result?answer='+total_answer;
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+        <h1>당신의 짝꿍이 궁금하십니까?</h1>
+        <div id="tag">
+            <button id='start'>보러가기</button>
+        </div>
+    </div>
+</body>
+</html>

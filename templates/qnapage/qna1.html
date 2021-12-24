@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/qna.js')}}"></script>
+    <script type="text/javascript"> var q = {{q|tojson}}; var ans1 = {{ans1|tojson}}; var ans2 = {{ans2|tojson}};</script>
+
+</head>
+<body>
+    <div name="qnamain" id="qnamain">
+        <div class="bubble">
+            <p id="label">시작해볼까요?</p>
+        </div>
+        <div class="tink">
+            <img id="tinkerbell" src="{{ url_for('static', filename='img/tinker.png') }}">
+        </div>
+        <div name="select">
+            <button type="button" class="select" id="bt1">네!</button>
+            <button type="button" class="select" id="bt2">싫어요!</button>
+        </div>
+        <img id="home" src="{{ url_for('static', filename='img/home.png') }}">
+        <img id="refresh" src="{{ url_for('static', filename='img/refresh.png') }}">
+    </div>
+</body>
+</html>

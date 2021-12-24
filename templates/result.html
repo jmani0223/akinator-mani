@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/result.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript"> var survey = {{survey|tojson}};</script>
+    <script>
+        $(function() {
+            var total_answer = decodeURI(location.search.split('=')[1]).split(',');
+            survey = (JSON.parse(decodeURIComponent(survey)));
+            match_arr = [];
+
+            Object.keys(survey).forEach((name, index)=>{
+                match ={};
+                cnt = 0;
+                Object.keys(survey[name]).forEach((q, idx)=>{
+                    for(var i=0 ; i<15 ;i++){
+                        if(survey[name][q]==total_answer[i]){
+                            cnt+=1;
+                        }
+                    }
+                })
+                match['name'] = name;
+                match['value'] = cnt;
+                match_arr.push(match);
+            })
+            match_arr.sort(function (a, b) {
+              if (a.value > b.value) {
+                return -1;
+              }
+              if (a.value < b.value) {
+                return 1;
+              }
+              return 0;
+            });
+            $('#r1').text(match_arr[0].name);
+            $('#r2').text(match_arr[1].name);
+            $('#r3').text(match_arr[2].name);
+
+
+        });
+    </script>
+</head>
+<body>
+    <h1>이 친구들이 당신을 기다립니다.</h1>
+
+    <div class="rank_list">
+        <img id="rank1" src="{{ url_for('static', filename='img/people1.png') }}" width=300 height=300">
+        <p class="person" id ="r1"></p>
+        <img id="rank2" src="{{ url_for('static', filename='img/people2.png') }}" width=300 height=300">
+        <p class="person" id ="r2"></p>
+        <img id="rank3" src="{{ url_for('static', filename='img/people3.png') }}" width=300 height=300">
+        <p class="person" id ="r3"></p>
+    </div>
+    <img id="home" src="{{ url_for('static', filename='img/home.png') }}">
+    <img id="refresh" src="{{ url_for('static', filename='img/refresh.png') }}">
+
+</body>
+</html>
