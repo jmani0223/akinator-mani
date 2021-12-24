@@ -29,5 +29,4 @@ def qna():
     return render_template('qnapage/qna1.html', q=question, ans1=ans1, ans2=ans2)
 
 if __name__ == '__main__':
-    port = int(os.envirion.get("PORT", 5000")
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run()
